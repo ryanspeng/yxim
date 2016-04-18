@@ -1,0 +1,59 @@
+package IM.BaseDefine;                             
+option java_package = "com.mogujie.tt.protobuf";   
+//option java_outer_classname = "MOGUJIEIMMessage";
+option optimize_for = LITE_RUNTIME;
+
+// service id                     
+enum ServiceID{                   
+    SID_LOGIN           = 0x0001; 
+    SID_BUDDY_LIST      = 0x0002; 
+    SID_MSG             = 0x0003; 
+    SID_GROUP           = 0x0004; 
+    SID_FILE            = 0x0005; 
+    SID_SWITCH_SERVICE  = 0x0006; 
+    SID_OTHER           = 0x0007; 
+    SID_INTERNAL        = 0x0008; 
+}
+
+enum OtherCmdID{
+    CID_OTHER_SERVER_STATISTIC_REQ          = 0x0719;
+    CID_OTHER_SERVER_STATISTIC_RSP          = 0x071a;
+    CID_OTHER_CLIENT_LIST_REQ               = 0x071b;
+    CID_OTHER_CLIENT_LIST_RSP               = 0x071c;
+}
+
+message ClientInfo{
+        required uint32 user_id = 1;
+        required uint64 login_time = 2;
+        required uint32 client_type = 3;
+        required string client_version = 4;
+}
+
+message IMServerStatisticReq{
+        //cmd id:                       0x0719
+}
+
+message IMServerStatisticRsp{
+        //cmd id:                       0x071a
+        required uint32 total_users = 1;
+        required uint32 fail_users = 2;
+        required uint32 cur_users = 3;
+        required uint32 pc_total_users = 4;
+        required uint32 pc_cur_users = 5;
+        required uint32 android_total_users = 6;
+        required uint32 android_cur_users = 7;
+        required uint32 ios_total_users = 8;
+        required uint32 ios_cur_users = 9;
+        required uint32 web_total_users = 10;
+        required uint32 web_cur_users = 11;
+        required uint32 send_msg_num = 12;
+}
+
+message IMClientListReq{
+        //cmd id:                       0x071b
+}
+
+message IMClientListRsp{
+        //cmd id:                       0x071c
+        repeated ClientInfo client_list = 1;
+}
